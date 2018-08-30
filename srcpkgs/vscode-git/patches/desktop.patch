@@ -1,0 +1,30 @@
+diff --git a/resources/linux/code.desktop b/resources/linux/code.desktop
+index f93060d565bd..5ce74d5e0264 100644
+--- a/resources/linux/code.desktop
++++ b/resources/linux/code.desktop
+@@ -1,18 +1,18 @@
+ [Desktop Entry]
+-Name=@@NAME_LONG@@
++Name=Microsoft Code - Dev
+ Comment=Code Editing. Redefined.
+ GenericName=Text Editor
+-Exec=/usr/share/@@NAME@@/@@NAME@@ --unity-launch %F
+-Icon=@@ICON@@
++Exec=/usr/lib/code-oss-dev/bin/code-oss --unity-launch %F
++Icon=/usr/lib/code-oss-dev/resources/app/resources/linux/code.png
+ Type=Application
+ StartupNotify=true
+-StartupWMClass=@@NAME_SHORT@@
++StartupWMClass=Code - OSS Dev
+ Categories=Utility;TextEditor;Development;IDE;
+ MimeType=text/plain;inode/directory;
+ Actions=new-empty-window;
+-Keywords=vscode;
++Keywords=vscode-dev;
+
+ [Desktop Action new-empty-window]
+ Name=New Empty Window
+-Exec=/usr/share/@@NAME@@/@@NAME@@ --new-window %F
+-Icon=@@ICON@@
++Exec=/usr/lib/code-oss-dev/bin/code-oss --new-window %F
++Icon=/usr/lib/code-oss-dev/resources/app/resources/linux/code.png
