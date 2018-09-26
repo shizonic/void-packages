@@ -1,0 +1,41 @@
+# Template file for 'vscode-insiders-bin'
+pkgname=vscode-insiders-bin
+version=20180926
+revision=2
+depends="GConf libXtst libxkbfile nss"
+short_desc="Microsoft Visual Code Insiders for Linux"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://code.visualstudio.com/"
+only_for_archs="i686 x86_64"
+nostrip_files="code-insiders"
+
+if [ "$XBPS_TARGET_MACHINE" = "i686" ]; then
+	_ARCH="ia32"
+	checksum=d8f02c71149ddd7e9ebc569df68404827469a1101b4e7be7e77cd98c92a199cb
+else
+	_ARCH="x64"
+	checksum=564e8f33171a1918aa81c1f6c2326e2eb50a4c27dfd3405f6e9f196a3415cf2a
+fi
+
+distfiles="https://vscode-update.azurewebsites.net/latest/linux-${_ARCH}/insider>${pkgname}.tar.gz"
+wrksrc="VSCode-linux-${_ARCH}"
+
+do_install() {
+	sed -i 's/ELECTRON_RUN_AS_NODE=1/LIBGL_ALWAYS_SOFTWARE=1 ELECTRON_RUN_AS_NODE=1/' bin/code-insiders
+
+	vmkdir usr/share/code-insiders
+	vcopy ../VSCode-linux-${_ARCH}/* usr/share/code-insiders
+
+	vmkdir usr/bin
+	ln -sf /usr/share/code-insiders/bin/code-insiders ${DESTDIR}/usr/bin/
+
+	vmkdir usr/share/applications
+	vinstall ${FILESDIR}/code-insiders.desktop 644 usr/share/applications
+
+	vmkdir usr/share/pixmaps
+	vinstall resources/app/resources/linux/code.png 644 usr/share/pixmaps code-insiders.png
+
+	vlicense resources/app/LICENSE.txt
+	vlicense resources/app/LICENSE.txt
+}
