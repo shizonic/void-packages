@@ -1,0 +1,42 @@
+# Template file for 'vscode-bin'
+pkgname=vscode-bin
+version=1.27.2
+revision=1
+depends="GConf libXtst libxkbfile nss"
+conflicts="vscode"
+short_desc="Microsoft Visual Code for Linux"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://code.visualstudio.com/"
+only_for_archs="i686 x86_64"
+nostrip_files="code"
+
+if [ "$XBPS_TARGET_MACHINE" = "i686" ]; then
+	_ARCH="ia32"
+	checksum=33704d089b03c636e8c46d434068c97b66e5a9d323b991bd327067aa90e87afa
+else
+	_ARCH="x64"
+	checksum=11023c652dd89bde1b7fbc8a7dc04fd4f87df3bfe6952a1c0ad75ab861e3196d
+fi
+
+distfiles="https://vscode-update.azurewebsites.net/${version}/linux-${_ARCH}/stable>${pkgname}.tar.gz"
+wrksrc="VSCode-linux-${_ARCH}"
+
+do_install() {
+	sed -i 's/ELECTRON_RUN_AS_NODE=1/LIBGL_ALWAYS_SOFTWARE=1 ELECTRON_RUN_AS_NODE=1/' bin/code
+
+	vmkdir usr/share/code
+	vcopy ../VSCode-linux-${_ARCH}/* usr/share/code
+
+	vmkdir usr/bin
+	ln -sf /usr/share/code/bin/code ${DESTDIR}/usr/bin/
+
+	vmkdir usr/share/applications
+	vinstall ${FILESDIR}/code.desktop 644 usr/share/applications
+
+	vmkdir usr/share/pixmaps
+	vinstall resources/app/resources/linux/code.png 644 usr/share/pixmaps code.png
+
+	vlicense resources/app/LICENSE.txt
+	vlicense resources/app/LICENSE.txt
+}
