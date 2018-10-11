@@ -1,0 +1,23 @@
+# Template file for 'battnotify'
+pkgname=battnotify
+version=0.1.0
+revision=1
+hostmakedepends="pkg-config rust cargo"
+makedepends="dbus-devel"
+depends="dbus"
+short_desc="Leightweight battery low notifier"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://github.com/shizonic/battnotify"
+distfiles="https://github.com/shizonic/battnotify/archive/${version}.tar.gz"
+checksum=676bc97b44e89c48ef785125c930972294522180b40bab3f1c2ccf2313b81982
+nocross=rust
+
+do_build() {
+	cargo build --release
+}
+
+do_install() {
+	vbin target/release/battnotify
+	vlicense LICENSE
+}
