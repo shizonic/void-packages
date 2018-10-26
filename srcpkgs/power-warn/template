@@ -1,0 +1,19 @@
+# Template file for 'power-warn'
+pkgname=power-warn
+version=1.2.0
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config rust cargo"
+makedepends="dbus-devel"
+depends="dbus"
+short_desc="Warn on low power level"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://github.com/yoshuawuyts/power-warn"
+distfiles="https://github.com/yoshuawuyts/power-warn/archive/${version}.tar.gz"
+checksum=fa9e3583109ad971c1f5956746a979f98f56806ae567efb6c8bee585b8a18c37
+
+do_install() {
+	vbin target/x86_64-unknown-linux-gnu/release/power-warn
+	vlicense LICENSE-MIT LICENSE
+}
