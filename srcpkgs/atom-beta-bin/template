@@ -1,0 +1,41 @@
+# Template file for 'atom-beta-bin'
+pkgname=atom-beta-bin
+version=1.33.0
+_version=1.33.0-beta2
+revision=1
+depends="git gtk+ GConf libnotify libXtst nss python xdg-utils
+ desktop-file-utils alsa-lib libgnome-keyring libXScrnSaver"
+short_desc="Hackable text editor for the 21st century"
+conflicts="atom atom-bin"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://atom.io/"
+only_for_archs="x86_64"
+nostrip=yes
+nocross=yes
+distfiles="https://github.com/atom/atom/releases/download/v${_version}/atom-amd64.tar.gz"
+checksum=8abd3110adf21902d956f01f4e9bc7c2fdea46d574272a3a9428a410f23d9f0e
+wrksrc="atom-beta-${_version}-amd64"
+
+do_install() {
+	vmkdir usr/share/atom
+	vcopy ../atom-beta-${_version}-amd64/* usr/share/atom
+
+	vmkdir usr/bin
+	vbin resources/app/atom.sh ${DESTDIR}/usr/bin/atom
+	ln -sf /usr/share/atom/resources/app/apm/bin/apm ${DESTDIR}/usr/bin/apm
+
+	vmkdir usr/share/applications
+	vinstall ${FILESDIR}/atom.desktop 644 usr/share/applications
+
+	vmkdir usr/share/pixmaps
+	vinstall atom.png 644 usr/share/pixmaps
+
+	vlicense resources/LICENSE.md LICENSE
+}
+
+
+post_install() {
+	# very hackish, git-imap-send is linked to openssl's libssl/libcrypto. Removing it allows it to package
+	rm ${DESTDIR}/usr/share/atom/resources/app.asar.unpacked/node_modules/dugite/git/libexec/git-core/git-imap-send
+}
