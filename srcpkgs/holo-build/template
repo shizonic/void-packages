@@ -1,0 +1,15 @@
+# Template file for 'holo-build'
+pkgname=holo-build
+version=1.5.2
+revision=1
+build_style=gnu-makefile
+hostmakedepends="go perl"
+depends="xz"
+short_desc="Cross-distribution system package compiler"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="http://holocm.org"
+distfiles="https://github.com/holocm/holo-build/archive/v${version}.tar.gz"
+checksum=a62c5481899aec874824616d273057b5f9f4ce54d4b4479dc9ef5dab3431521d
+nostrip="yes"
+nocross="yes"
