@@ -1,0 +1,27 @@
+# Template file for 'holo'
+pkgname=holo
+version=2.2
+revision=1
+build_style=gnu-makefile
+conf_files="
+ /etc/holorc
+ etc/holorc.d/10-files
+ etc/holorc.d/20-users-groups
+ etc/holorc.d/25-ssh-keys
+ etc/holorc.d/95-holo-run-scripts"
+hostmakedepends="go perl"
+depends="git openssh shadow"
+short_desc="Minimalistic configuration management"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="http://holocm.org"
+distfiles="https://github.com/holocm/holo/archive/v${version}.tar.gz"
+checksum=56b8c47e8b872155fc50f1de972260189416fc7e0c9b6478ba81eed14eeaf72f
+nostrip="yes"
+nocross="yes"
+provides="
+ holo-files-${version}_${revision}
+ holo-run-scripts-${version}_${revision}
+ holo-ssh-keys-${version}_${revision}
+ holo-users-groups-${version}_${revision}
+"
