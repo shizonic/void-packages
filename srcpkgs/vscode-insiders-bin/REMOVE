@@ -1,8 +1,8 @@
 if [ "$UPDATE" = "no" ]; then
     case "$ACTION" in
         post)
-            if [ -d usr/share/code-insiders ]; then
-                rm -rf usr/share/code-insiders
+            if [ -d usr/lib/code-insiders ]; then
+                rm -rf usr/lib/code-insiders
             fi
         ;;
     esac

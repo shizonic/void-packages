@@ -1,13 +1,13 @@
 # Template file for 'vscode-insiders-bin'
 pkgname=vscode-insiders-bin
-version=20190107
+version=20190119
 revision=1
+only_for_archs="i686 x86_64"
 depends="GConf libXtst libxkbfile nss"
 short_desc="Microsoft Visual Code Insiders for Linux"
 maintainer="shizonic <realtiaz@gmail.com>"
 license="MIT"
 homepage="https://code.visualstudio.com/"
-only_for_archs="i686 x86_64"
 nostrip_files="code-insiders"
 
 if [ "$XBPS_TARGET_MACHINE" = "i686" ]; then
@@ -15,18 +15,18 @@ if [ "$XBPS_TARGET_MACHINE" = "i686" ]; then
 	checksum=706bd437b555d3ec1e21c0ac7a703b679bdc3f7beb019ec88fe7f3a75cbbd508
 else
 	_ARCH="x64"
-	checksum=421ec5526e5f16fea76277ba2bb84bda917053d1da2e1b31f0194af859efb713
+	checksum=094b974711e6c336cb4b1805fbab1be8a831d2d38288e97871f830715cc13c33
 fi
 
 distfiles="https://vscode-update.azurewebsites.net/latest/linux-${_ARCH}/insider>${pkgname}-${_ARCH}-${version}_${revision}.tar.gz"
 wrksrc="VSCode-linux-${_ARCH}"
 
 do_install() {
-	vmkdir usr/share/code-insiders
-	vcopy ../VSCode-linux-${_ARCH}/* usr/share/code-insiders
+	vmkdir usr/lib/code-insiders
+	vcopy ../VSCode-linux-${_ARCH}/* usr/lib/code-insiders
 
 	vmkdir usr/bin
-	ln -sf /usr/share/code-insiders/bin/code-insiders ${DESTDIR}/usr/bin/
+	ln -sf /usr/lib/code-insiders/bin/code-insiders ${DESTDIR}/usr/bin/
 
 	vmkdir usr/share/applications
 	vinstall ${FILESDIR}/code-insiders.desktop 644 usr/share/applications

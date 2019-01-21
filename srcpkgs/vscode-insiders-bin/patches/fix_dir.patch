@@ -1,0 +1,10 @@
+--- bin/code-insiders.orig	2019-01-21 07:03:04.000000000 +0100
++++ bin/code-insiders	2019-01-21 08:39:44.213031630 +0100
+@@ -26,7 +26,7 @@
+		VSCODE_PATH="$(dirname $(readlink -f $0))/.."
+	else
+		# else use the standard install location
+-		VSCODE_PATH="/usr/share/code-insiders"
++		VSCODE_PATH="/usr/lib/code-insiders"
+	fi
+ fi
