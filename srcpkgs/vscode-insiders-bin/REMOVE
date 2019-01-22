@@ -4,6 +4,9 @@ if [ "$UPDATE" = "no" ]; then
             if [ -d usr/lib/code-insiders ]; then
                 rm -rf usr/lib/code-insiders
             fi
+            if [ -d usr/share/code-insiders ]; then
+                rm -rf usr/share/code-insiders
+            fi
         ;;
     esac
 fi
