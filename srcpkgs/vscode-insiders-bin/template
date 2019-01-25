@@ -1,6 +1,6 @@
 # Template file for 'vscode-insiders-bin'
 pkgname=vscode-insiders-bin
-version=20190122
+version=20190123
 revision=1
 only_for_archs="i686 x86_64"
 depends="GConf libXtst libxkbfile nss"
@@ -15,7 +15,7 @@ if [ "$XBPS_TARGET_MACHINE" = "i686" ]; then
 	checksum=706bd437b555d3ec1e21c0ac7a703b679bdc3f7beb019ec88fe7f3a75cbbd508
 else
 	_ARCH="x64"
-	checksum=5d667c85a125279e66104e9d92f278fa601952883146cc1f943ba4050e797b2b
+	checksum=3ebb07cb99db816f34cf2fc00a41c698ff9104a0c82cbb294cb5f155dcff105d
 fi
 
 distfiles="https://vscode-update.azurewebsites.net/latest/linux-${_ARCH}/insider>${pkgname}-${_ARCH}-${version}_${revision}.tar.gz"
