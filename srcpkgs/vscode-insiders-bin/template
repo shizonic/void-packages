@@ -1,16 +1,16 @@
 # Template file for 'vscode-insiders-bin'
 pkgname=vscode-insiders-bin
-version=20190128
+version=20190130
 revision=1
 wrksrc="VSCode-linux-x64"
 only_for_archs="x86_64"
-depends="GConf libXtst libxkbfile nss"
+depends="GConf libXtst libxkbfile nss dejavu-fonts-ttf"
 short_desc="Microsoft Visual Code Insiders for Linux"
 maintainer="shizonic <realtiaz@gmail.com>"
 license="MIT"
 homepage="https://code.visualstudio.com/"
 distfiles="https://vscode-update.azurewebsites.net/latest/linux-x64/insider>${pkgname}-x64-${version}_${revision}.tar.gz"
-checksum=33471291e423554da58cf8f1ed2e466ef787e628202ec5c56d4ec21e3fe360b8
+checksum=37269bdf1cc2efc2d981b010fdded732de9a22d9e52cb07564c3de2f9ff57ecc
 nostrip_files="code-insiders"
 
 do_install() {
@@ -26,6 +26,5 @@ do_install() {
 	vmkdir usr/share/pixmaps
 	vinstall resources/app/resources/linux/code.png 644 usr/share/pixmaps code-insiders.png
 
-	vlicense resources/app/LICENSE.txt
 	vlicense resources/app/LICENSE.txt
 }
