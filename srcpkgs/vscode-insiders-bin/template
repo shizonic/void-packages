@@ -1,6 +1,6 @@
 # Template file for 'vscode-insiders-bin'
 pkgname=vscode-insiders-bin
-version=20190130
+version=20190201
 revision=1
 wrksrc="VSCode-linux-x64"
 only_for_archs="x86_64"
@@ -10,7 +10,7 @@ maintainer="shizonic <realtiaz@gmail.com>"
 license="MIT"
 homepage="https://code.visualstudio.com/"
 distfiles="https://vscode-update.azurewebsites.net/latest/linux-x64/insider>${pkgname}-x64-${version}_${revision}.tar.gz"
-checksum=37269bdf1cc2efc2d981b010fdded732de9a22d9e52cb07564c3de2f9ff57ecc
+checksum=be3bee87e349e37f33a52981be060094498030d9ae12e4b481791b14d5c5e01d
 nostrip_files="code-insiders"
 
 do_install() {
