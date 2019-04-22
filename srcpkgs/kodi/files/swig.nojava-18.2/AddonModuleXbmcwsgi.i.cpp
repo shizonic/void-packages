@@ -87,20 +87,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiErrorStream\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiErrorStream\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiErrorStream\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -108,8 +108,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_flush (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -124,20 +124,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"flush\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"flush\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"flush\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -146,8 +146,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_write (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -173,7 +173,7 @@ namespace PythonBindings
 
     try
     {
-      if (pystr) PyXBMCGetUnicodeString(str,pystr,false,"str","write"); 
+      if (pystr) PyXBMCGetUnicodeString(str,pystr,false,"str","write");
 
       ((XBMCAddon::xbmcwsgi::WsgiErrorStream*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcwsgi_WsgiErrorStream_Type,"write","XBMCAddon::xbmcwsgi::WsgiErrorStream"))-> write(  str  );
 
@@ -181,20 +181,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"write\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"write\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"write\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -203,8 +203,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_writelines (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -230,14 +230,14 @@ namespace PythonBindings
 
     try
     {
-      
+
     if (pyseq)
     {
       bool isTuple = PyObject_TypeCheck(pyseq,&PyTuple_Type);
       if (!isTuple && !PyObject_TypeCheck(pyseq,&PyList_Type))
         throw WrongTypeException("The parameter \"seq\" must be either a Tuple or a List.");
 
-      
+
       PyObject *pyentry1 = NULL;
       auto vecSize = (isTuple ? PyTuple_Size(pyseq) : PyList_Size(pyseq));
       for(Py_ssize_t i = 0; i < vecSize; i++)
@@ -248,7 +248,7 @@ namespace PythonBindings
         seq.push_back(entry1);
       }
     }
- 
+
 
       ((XBMCAddon::xbmcwsgi::WsgiErrorStream*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcwsgi_WsgiErrorStream_Type,"writelines","XBMCAddon::xbmcwsgi::WsgiErrorStream"))-> writelines(  seq  );
 
@@ -256,20 +256,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"writelines\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"writelines\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"writelines\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -278,8 +278,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_New (PyTypeObject* pytype  , PyObject *args, PyObject *kwds  )
   {
@@ -295,20 +295,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiInputStreamIterator\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiInputStreamIterator\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiInputStreamIterator\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -316,8 +316,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_read (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -349,20 +349,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"read\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"read\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"read\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -370,8 +370,8 @@ namespace PythonBindings
     // transform the result
     result = PyString_FromStringAndSize(apiResult.c_str(), apiResult.length());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_readline (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -403,20 +403,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"readline\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"readline\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"readline\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -424,8 +424,8 @@ namespace PythonBindings
     // transform the result
     result = PyString_FromStringAndSize(apiResult.c_str(), apiResult.length());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_readlines (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -457,26 +457,26 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"readlines\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"readlines\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"readlines\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
 
     // transform the result
-    
+
       result = PyList_New(0);
 
       for (std::vector<XBMCAddon::String >::iterator iter = apiResult.begin(); iter != apiResult.end(); ++iter)
@@ -490,8 +490,8 @@ namespace PythonBindings
 
 
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStream_New (PyTypeObject* pytype  , PyObject *args, PyObject *kwds  )
   {
@@ -507,20 +507,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiInputStream\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiInputStream\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiInputStream\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -528,8 +528,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponse_New (PyTypeObject* pytype  , PyObject *args, PyObject *kwds  )
   {
@@ -545,20 +545,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiResponse\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiResponse\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiResponse\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -566,8 +566,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponse_callable_ (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -601,22 +601,22 @@ namespace PythonBindings
     WsgiResponseBody * apiResult;
     try
     {
-      if (pystatus) PyXBMCGetUnicodeString(status,pystatus,false,"status","operator ()"); 
-      
+      if (pystatus) PyXBMCGetUnicodeString(status,pystatus,false,"status","operator ()");
+
     if (pyresponse_headers)
     {
       bool isTuple = PyObject_TypeCheck(pyresponse_headers,&PyTuple_Type);
       if (!isTuple && !PyObject_TypeCheck(pyresponse_headers,&PyList_Type))
         throw WrongTypeException("The parameter \"response_headers\" must be either a Tuple or a List.");
 
-      
+
       PyObject *pyentry1 = NULL;
       auto vecSize = (isTuple ? PyTuple_Size(pyresponse_headers) : PyList_Size(pyresponse_headers));
       for(Py_ssize_t i = 0; i < vecSize; i++)
       {
         pyentry1 = (isTuple ? PyTuple_GetItem(pyresponse_headers, i) : PyList_GetItem(pyresponse_headers, i));
         Tuple< XBMCAddon::String ,XBMCAddon::String  >  entry1;
-        
+
     if(pyentry1)
     {
       bool isTuple = PyObject_TypeCheck(pyentry1,&PyTuple_Type);
@@ -647,8 +647,8 @@ namespace PythonBindings
         response_headers.push_back(entry1);
       }
     }
- 
-      exc_info = (void*)pyexc_info; 
+
+      exc_info = (void*)pyexc_info;
 
       apiResult = ((XBMCAddon::xbmcwsgi::WsgiResponse*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcwsgi_WsgiResponse_Type,"operator ()","XBMCAddon::xbmcwsgi::WsgiResponse"))-> operator ()(  status,  response_headers,  exc_info  );
 
@@ -656,20 +656,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"operator ()\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"operator ()\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"operator ()\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -677,8 +677,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,true);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponseBody_New (PyTypeObject* pytype  , PyObject *args, PyObject *kwds  )
   {
@@ -694,20 +694,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiResponseBody\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiResponseBody\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcwsgi::WsgiResponseBody\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -715,8 +715,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponseBody_callable_ (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -742,7 +742,7 @@ namespace PythonBindings
 
     try
     {
-      if (pydata) PyXBMCGetUnicodeString(data,pydata,false,"data","operator ()"); 
+      if (pydata) PyXBMCGetUnicodeString(data,pydata,false,"data","operator ()");
 
       ((XBMCAddon::xbmcwsgi::WsgiResponseBody*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcwsgi_WsgiResponseBody_Type,"operator ()","XBMCAddon::xbmcwsgi::WsgiResponseBody"))-> operator ()(  data  );
 
@@ -750,20 +750,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"operator ()\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"operator ()\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"operator ()\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -772,8 +772,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static void xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_Dealloc (PyHolder* self  )
   {
@@ -790,22 +790,22 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiErrorStream\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiErrorStream\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiErrorStream\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   static void xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_Dealloc (PyHolder* self  )
   {
     XBMC_TRACE;
@@ -821,22 +821,22 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiInputStreamIterator\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiInputStreamIterator\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiInputStreamIterator\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   static void xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStream_Dealloc (PyHolder* self  )
   {
     XBMC_TRACE;
@@ -852,22 +852,22 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiInputStream\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiInputStream\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiInputStream\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   static void xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponse_Dealloc (PyHolder* self  )
   {
     XBMC_TRACE;
@@ -883,22 +883,22 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiResponse\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiResponse\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiResponse\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   static void xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponseBody_Dealloc (PyHolder* self  )
   {
     XBMC_TRACE;
@@ -914,31 +914,31 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiResponseBody\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiResponseBody\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcwsgi::WsgiResponseBody\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   //=========================================================================
   // This section contains the initialization for the
   // Python extension for the Api class XBMCAddon::xbmcwsgi::WsgiErrorStream
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiErrorStream_methods[] = { 
-    {"flush", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_flush, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"write", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_write, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"writelines", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_writelines, METH_VARARGS|METH_KEYWORDS, NULL }, 
+  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiErrorStream_methods[] = {
+    {"flush", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_flush, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"write", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_write, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"writelines", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_writelines, METH_VARARGS|METH_KEYWORDS, NULL },
     {NULL, NULL, 0, NULL}
   };
 
@@ -952,13 +952,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcwsgi_WsgiErrorStream_Type.pythonType;
     pythonType.tp_name = "xbmcwsgi.WsgiErrorStream";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiErrorStream_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiErrorStream_methods;
 
     pythonType.tp_base = NULL;
     pythonType.tp_new = xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiErrorStream_New;
@@ -974,17 +974,17 @@ namespace PythonBindings
   // Python extension for the Api class XBMCAddon::xbmcwsgi::WsgiInputStreamIterator
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_methods[] = { 
-    {"read", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_read, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"readline", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_readline, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"readlines", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_readlines, METH_VARARGS|METH_KEYWORDS, NULL }, 
+  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_methods[] = {
+    {"read", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_read, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"readline", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_readline, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"readlines", (PyCFunction)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_readlines, METH_VARARGS|METH_KEYWORDS, NULL },
     {NULL, NULL, 0, NULL}
   };
 
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_iter(PyObject* self)
-  { 
-    return self; 
+  {
+    return self;
   }
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_iternext(PyObject* self)
@@ -1034,13 +1034,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcwsgi_WsgiInputStreamIterator_Type.pythonType;
     pythonType.tp_name = "xbmcwsgi.WsgiInputStreamIterator";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_ITER;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_methods;
     pythonType.tp_iter = (getiterfunc)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_iter;
     pythonType.tp_iternext = (iternextfunc)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStreamIterator_iternext;
 
@@ -1059,13 +1059,13 @@ namespace PythonBindings
   // Python extension for the Api class XBMCAddon::xbmcwsgi::WsgiInputStream
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiInputStream_methods[] = { 
+  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiInputStream_methods[] = {
     {NULL, NULL, 0, NULL}
   };
 
 
   static PyObject* xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStream_iter(PyObject* self)
-  { 
+  {
     PyObject* result = NULL;
     try
     {
@@ -1092,7 +1092,7 @@ namespace PythonBindings
       return NULL;
     }
 
-    return result; 
+    return result;
   }
 
 
@@ -1104,13 +1104,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcwsgi_WsgiInputStream_Type.pythonType;
     pythonType.tp_name = "xbmcwsgi.WsgiInputStream";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStream_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStream_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiInputStream_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiInputStream_methods;
     pythonType.tp_iter = (getiterfunc)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiInputStream_iter;
 
 
@@ -1130,7 +1130,7 @@ namespace PythonBindings
   // Python extension for the Api class XBMCAddon::xbmcwsgi::WsgiResponse
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiResponse_methods[] = { 
+  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiResponse_methods[] = {
     {NULL, NULL, 0, NULL}
   };
 
@@ -1144,13 +1144,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcwsgi_WsgiResponse_Type.pythonType;
     pythonType.tp_name = "xbmcwsgi.WsgiResponse";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponse_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponse_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiResponse_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiResponse_methods;
     pythonType.tp_call = (ternaryfunc)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponse_callable_;
 
 
@@ -1168,7 +1168,7 @@ namespace PythonBindings
   // Python extension for the Api class XBMCAddon::xbmcwsgi::WsgiResponseBody
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiResponseBody_methods[] = { 
+  static PyMethodDef XBMCAddon_xbmcwsgi_WsgiResponseBody_methods[] = {
     {NULL, NULL, 0, NULL}
   };
 
@@ -1182,13 +1182,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcwsgi_WsgiResponseBody_Type.pythonType;
     pythonType.tp_name = "xbmcwsgi.WsgiResponseBody";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponseBody_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponseBody_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiResponseBody_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcwsgi_WsgiResponseBody_methods;
     pythonType.tp_call = (ternaryfunc)xbmcwsgi_XBMCAddon_xbmcwsgi_WsgiResponseBody_callable_;
 
 
@@ -1202,7 +1202,7 @@ namespace PythonBindings
   //=========================================================================
 
 
-  static PyMethodDef xbmcwsgi_methods[] = { 
+  static PyMethodDef xbmcwsgi_methods[] = {
     {NULL, NULL, 0, NULL}
   };
 
@@ -1259,7 +1259,7 @@ namespace PythonBindings
 
    // constants
    PyModule_AddStringConstant(module, "__author__", "Team Kodi <http://kodi.tv>");
-   PyModule_AddStringConstant(module, "__date__", "Mon Feb 18 19:37:35 GMT 2019");
+   PyModule_AddStringConstant(module, "__date__", "Mon Apr 22 18:47:57 GMT 2019");
    PyModule_AddStringConstant(module, "__version__", "2.26.0");
    PyModule_AddStringConstant(module, "__credits__", "Team Kodi");
    PyModule_AddStringConstant(module, "__platform__", "ALL");
@@ -1272,4 +1272,3 @@ namespace PythonBindings
 
 
 #endif
-

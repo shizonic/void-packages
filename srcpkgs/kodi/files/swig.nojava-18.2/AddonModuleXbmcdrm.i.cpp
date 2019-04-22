@@ -81,9 +81,9 @@ namespace PythonBindings
     XBMCAddon::xbmcdrm::CryptoSession * apiResult;
     try
     {
-      if (pyUUID) PyXBMCGetUnicodeString(UUID,pyUUID,false,"UUID","CryptoSession"); 
-      if (pycipherAlgorithm) PyXBMCGetUnicodeString(cipherAlgorithm,pycipherAlgorithm,false,"cipherAlgorithm","CryptoSession"); 
-      if (pymacAlgorithm) PyXBMCGetUnicodeString(macAlgorithm,pymacAlgorithm,false,"macAlgorithm","CryptoSession"); 
+      if (pyUUID) PyXBMCGetUnicodeString(UUID,pyUUID,false,"UUID","CryptoSession");
+      if (pycipherAlgorithm) PyXBMCGetUnicodeString(cipherAlgorithm,pycipherAlgorithm,false,"cipherAlgorithm","CryptoSession");
+      if (pymacAlgorithm) PyXBMCGetUnicodeString(macAlgorithm,pymacAlgorithm,false,"macAlgorithm","CryptoSession");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = new XBMCAddon::xbmcdrm::CryptoSession(  UUID,  cipherAlgorithm,  macAlgorithm  );
@@ -92,20 +92,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcdrm::CryptoSession\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcdrm::CryptoSession\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcdrm::CryptoSession\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -113,8 +113,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_GetKeyRequest (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -151,7 +151,7 @@ namespace PythonBindings
     XbmcCommons::Buffer  apiResult;
     try
     {
-      
+
     if (PyString_Check(pyinit))
     {
       const char* str = PyString_AsString(pyinit);
@@ -168,9 +168,9 @@ namespace PythonBindings
       init.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "init", "GetKeyRequest"); 
-      if (pymimeType) PyXBMCGetUnicodeString(mimeType,pymimeType,false,"mimeType","GetKeyRequest"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "init", "GetKeyRequest");
+      if (pymimeType) PyXBMCGetUnicodeString(mimeType,pymimeType,false,"mimeType","GetKeyRequest");
+
     {
       PyObject *pykey, *pyvalue;
       Py_ssize_t pos = 0;
@@ -182,7 +182,7 @@ namespace PythonBindings
         if (pyvalue) PyXBMCGetUnicodeString(value,pyvalue,false,"value","GetKeyRequest");
         optionalParameters[key] = value;
       }
-    } 
+    }
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"GetKeyRequest","XBMCAddon::xbmcdrm::CryptoSession"))-> GetKeyRequest(  init,  mimeType,  offlineKey,  optionalParameters  );
 
@@ -190,20 +190,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"GetKeyRequest\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"GetKeyRequest\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"GetKeyRequest\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -211,8 +211,8 @@ namespace PythonBindings
     // transform the result
     result = PyByteArray_FromStringAndSize((char*)apiResult.curPosition(),apiResult.remaining());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_GetPropertyString (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -238,7 +238,7 @@ namespace PythonBindings
     XBMCAddon::String  apiResult;
     try
     {
-      if (pyname) PyXBMCGetUnicodeString(name,pyname,false,"name","GetPropertyString"); 
+      if (pyname) PyXBMCGetUnicodeString(name,pyname,false,"name","GetPropertyString");
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"GetPropertyString","XBMCAddon::xbmcdrm::CryptoSession"))-> GetPropertyString(  name  );
 
@@ -246,20 +246,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"GetPropertyString\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"GetPropertyString\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"GetPropertyString\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -267,8 +267,8 @@ namespace PythonBindings
     // transform the result
     result = PyString_FromStringAndSize(apiResult.c_str(), apiResult.length());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_ProvideKeyResponse (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -294,7 +294,7 @@ namespace PythonBindings
     XBMCAddon::String  apiResult;
     try
     {
-      
+
     if (PyString_Check(pyresponse))
     {
       const char* str = PyString_AsString(pyresponse);
@@ -311,7 +311,7 @@ namespace PythonBindings
       response.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "response", "ProvideKeyResponse"); 
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "response", "ProvideKeyResponse");
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"ProvideKeyResponse","XBMCAddon::xbmcdrm::CryptoSession"))-> ProvideKeyResponse(  response  );
 
@@ -319,20 +319,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"ProvideKeyResponse\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"ProvideKeyResponse\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"ProvideKeyResponse\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -340,8 +340,8 @@ namespace PythonBindings
     // transform the result
     result = PyString_FromStringAndSize(apiResult.c_str(), apiResult.length());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_RemoveKeys (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -356,20 +356,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"RemoveKeys\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"RemoveKeys\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"RemoveKeys\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -378,8 +378,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_RestoreKeys (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -405,7 +405,7 @@ namespace PythonBindings
 
     try
     {
-      if (pykeySetId) PyXBMCGetUnicodeString(keySetId,pykeySetId,false,"keySetId","RestoreKeys"); 
+      if (pykeySetId) PyXBMCGetUnicodeString(keySetId,pykeySetId,false,"keySetId","RestoreKeys");
 
       ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"RestoreKeys","XBMCAddon::xbmcdrm::CryptoSession"))-> RestoreKeys(  keySetId  );
 
@@ -413,20 +413,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"RestoreKeys\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"RestoreKeys\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"RestoreKeys\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -435,8 +435,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_SetPropertyString (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -466,8 +466,8 @@ namespace PythonBindings
 
     try
     {
-      if (pyname) PyXBMCGetUnicodeString(name,pyname,false,"name","SetPropertyString"); 
-      if (pyvalue) PyXBMCGetUnicodeString(value,pyvalue,false,"value","SetPropertyString"); 
+      if (pyname) PyXBMCGetUnicodeString(name,pyname,false,"name","SetPropertyString");
+      if (pyvalue) PyXBMCGetUnicodeString(value,pyvalue,false,"value","SetPropertyString");
 
       ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"SetPropertyString","XBMCAddon::xbmcdrm::CryptoSession"))-> SetPropertyString(  name,  value  );
 
@@ -475,20 +475,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"SetPropertyString\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"SetPropertyString\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"SetPropertyString\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -497,8 +497,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Decrypt (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -532,7 +532,7 @@ namespace PythonBindings
     XbmcCommons::Buffer  apiResult;
     try
     {
-      
+
     if (PyString_Check(pycipherKeyId))
     {
       const char* str = PyString_AsString(pycipherKeyId);
@@ -549,8 +549,8 @@ namespace PythonBindings
       cipherKeyId.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "cipherKeyId", "Decrypt"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "cipherKeyId", "Decrypt");
+
     if (PyString_Check(pyinput))
     {
       const char* str = PyString_AsString(pyinput);
@@ -567,8 +567,8 @@ namespace PythonBindings
       input.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "input", "Decrypt"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "input", "Decrypt");
+
     if (PyString_Check(pyiv))
     {
       const char* str = PyString_AsString(pyiv);
@@ -585,7 +585,7 @@ namespace PythonBindings
       iv.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "iv", "Decrypt"); 
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "iv", "Decrypt");
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"Decrypt","XBMCAddon::xbmcdrm::CryptoSession"))-> Decrypt(  cipherKeyId,  input,  iv  );
 
@@ -593,20 +593,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"Decrypt\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Decrypt\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Decrypt\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -614,8 +614,8 @@ namespace PythonBindings
     // transform the result
     result = PyByteArray_FromStringAndSize((char*)apiResult.curPosition(),apiResult.remaining());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Encrypt (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -649,7 +649,7 @@ namespace PythonBindings
     XbmcCommons::Buffer  apiResult;
     try
     {
-      
+
     if (PyString_Check(pycipherKeyId))
     {
       const char* str = PyString_AsString(pycipherKeyId);
@@ -666,8 +666,8 @@ namespace PythonBindings
       cipherKeyId.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "cipherKeyId", "Encrypt"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "cipherKeyId", "Encrypt");
+
     if (PyString_Check(pyinput))
     {
       const char* str = PyString_AsString(pyinput);
@@ -684,8 +684,8 @@ namespace PythonBindings
       input.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "input", "Encrypt"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "input", "Encrypt");
+
     if (PyString_Check(pyiv))
     {
       const char* str = PyString_AsString(pyiv);
@@ -702,7 +702,7 @@ namespace PythonBindings
       iv.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "iv", "Encrypt"); 
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "iv", "Encrypt");
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"Encrypt","XBMCAddon::xbmcdrm::CryptoSession"))-> Encrypt(  cipherKeyId,  input,  iv  );
 
@@ -710,20 +710,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"Encrypt\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Encrypt\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Encrypt\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -731,8 +731,8 @@ namespace PythonBindings
     // transform the result
     result = PyByteArray_FromStringAndSize((char*)apiResult.curPosition(),apiResult.remaining());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Sign (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -762,7 +762,7 @@ namespace PythonBindings
     XbmcCommons::Buffer  apiResult;
     try
     {
-      
+
     if (PyString_Check(pymacKeyId))
     {
       const char* str = PyString_AsString(pymacKeyId);
@@ -779,8 +779,8 @@ namespace PythonBindings
       macKeyId.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "macKeyId", "Sign"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "macKeyId", "Sign");
+
     if (PyString_Check(pymessage))
     {
       const char* str = PyString_AsString(pymessage);
@@ -797,7 +797,7 @@ namespace PythonBindings
       message.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "message", "Sign"); 
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "message", "Sign");
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"Sign","XBMCAddon::xbmcdrm::CryptoSession"))-> Sign(  macKeyId,  message  );
 
@@ -805,20 +805,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"Sign\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Sign\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Sign\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -826,8 +826,8 @@ namespace PythonBindings
     // transform the result
     result = PyByteArray_FromStringAndSize((char*)apiResult.curPosition(),apiResult.remaining());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Verify (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -861,7 +861,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      
+
     if (PyString_Check(pymacKeyId))
     {
       const char* str = PyString_AsString(pymacKeyId);
@@ -878,8 +878,8 @@ namespace PythonBindings
       macKeyId.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "macKeyId", "Verify"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "macKeyId", "Verify");
+
     if (PyString_Check(pymessage))
     {
       const char* str = PyString_AsString(pymessage);
@@ -896,8 +896,8 @@ namespace PythonBindings
       message.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "message", "Verify"); 
-      
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "message", "Verify");
+
     if (PyString_Check(pysignature))
     {
       const char* str = PyString_AsString(pysignature);
@@ -914,7 +914,7 @@ namespace PythonBindings
       signature.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "signature", "Verify"); 
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "signature", "Verify");
 
       apiResult = ((XBMCAddon::xbmcdrm::CryptoSession*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcdrm_CryptoSession_Type,"Verify","XBMCAddon::xbmcdrm::CryptoSession"))-> Verify(  macKeyId,  message,  signature  );
 
@@ -922,20 +922,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"Verify\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Verify\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"Verify\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -943,8 +943,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static void xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Dealloc (PyHolder* self  )
   {
@@ -961,38 +961,38 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcdrm::CryptoSession\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcdrm::CryptoSession\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcdrm::CryptoSession\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   //=========================================================================
   // This section contains the initialization for the
   // Python extension for the Api class XBMCAddon::xbmcdrm::CryptoSession
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcdrm_CryptoSession_methods[] = { 
-    {"GetKeyRequest", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_GetKeyRequest, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"GetPropertyString", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_GetPropertyString, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"ProvideKeyResponse", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_ProvideKeyResponse, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"RemoveKeys", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_RemoveKeys, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"RestoreKeys", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_RestoreKeys, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"SetPropertyString", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_SetPropertyString, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"Decrypt", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Decrypt, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"Encrypt", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Encrypt, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"Sign", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Sign, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"Verify", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Verify, METH_VARARGS|METH_KEYWORDS, NULL }, 
+  static PyMethodDef XBMCAddon_xbmcdrm_CryptoSession_methods[] = {
+    {"GetKeyRequest", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_GetKeyRequest, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"GetPropertyString", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_GetPropertyString, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"ProvideKeyResponse", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_ProvideKeyResponse, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"RemoveKeys", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_RemoveKeys, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"RestoreKeys", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_RestoreKeys, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"SetPropertyString", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_SetPropertyString, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"Decrypt", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Decrypt, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"Encrypt", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Encrypt, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"Sign", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Sign, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"Verify", (PyCFunction)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Verify, METH_VARARGS|METH_KEYWORDS, NULL },
     {NULL, NULL, 0, NULL}
   };
 
@@ -1006,13 +1006,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcdrm_CryptoSession_Type.pythonType;
     pythonType.tp_name = "xbmcdrm.CryptoSession";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcdrm_CryptoSession_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcdrm_CryptoSession_methods;
 
     pythonType.tp_base = NULL;
     pythonType.tp_new = xbmcdrm_XBMCAddon_xbmcdrm_CryptoSession_New;
@@ -1024,7 +1024,7 @@ namespace PythonBindings
   //=========================================================================
 
 
-  static PyMethodDef xbmcdrm_methods[] = { 
+  static PyMethodDef xbmcdrm_methods[] = {
     {NULL, NULL, 0, NULL}
   };
 
@@ -1061,7 +1061,7 @@ namespace PythonBindings
 
    // constants
    PyModule_AddStringConstant(module, "__author__", "Team Kodi <http://kodi.tv>");
-   PyModule_AddStringConstant(module, "__date__", "Mon Feb 18 19:37:41 GMT 2019");
+   PyModule_AddStringConstant(module, "__date__", "Mon Apr 22 18:48:00 GMT 2019");
    PyModule_AddStringConstant(module, "__version__", "2.26.0");
    PyModule_AddStringConstant(module, "__credits__", "Team Kodi");
    PyModule_AddStringConstant(module, "__platform__", "ALL");
@@ -1071,5 +1071,3 @@ namespace PythonBindings
   }
 
 } // end PythonBindings namespace for python type definitions
-
-

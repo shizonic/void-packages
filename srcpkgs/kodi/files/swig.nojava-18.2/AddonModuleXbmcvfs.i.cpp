@@ -83,7 +83,7 @@ namespace PythonBindings
     XBMCAddon::xbmcvfs::File * apiResult;
     try
     {
-      if (pyfilepath) PyXBMCGetUnicodeString(filepath,pyfilepath,false,"filepath","File"); 
+      if (pyfilepath) PyXBMCGetUnicodeString(filepath,pyfilepath,false,"filepath","File");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = new XBMCAddon::xbmcvfs::File(  filepath,  mode  );
@@ -92,20 +92,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcvfs::File\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcvfs::File\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcvfs::File\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -113,8 +113,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_File_read (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -146,20 +146,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"read\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"read\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"read\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -167,8 +167,8 @@ namespace PythonBindings
     // transform the result
     result = PyString_FromStringAndSize(apiResult.c_str(), apiResult.length());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_File_readBytes (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -200,20 +200,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"readBytes\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"readBytes\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"readBytes\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -221,8 +221,8 @@ namespace PythonBindings
     // transform the result
     result = PyByteArray_FromStringAndSize((char*)apiResult.curPosition(),apiResult.remaining());
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_File_write (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -248,7 +248,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      
+
     if (PyString_Check(pybuffer))
     {
       const char* str = PyString_AsString(pybuffer);
@@ -265,7 +265,7 @@ namespace PythonBindings
       buffer.flip(); // prepare the buffer for reading from
     }
     else
-      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "buffer", "write"); 
+      throw XBMCAddon::WrongTypeException("argument \"%s\" for \"%s\" must be a string or a bytearray", "buffer", "write");
 
       apiResult = ((XBMCAddon::xbmcvfs::File*)retrieveApiInstance((PyObject*)self,&TyXBMCAddon_xbmcvfs_File_Type,"write","XBMCAddon::xbmcvfs::File"))-> write(  buffer  );
 
@@ -273,20 +273,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"write\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"write\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"write\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -294,8 +294,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_File_size (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -310,20 +310,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"size\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"size\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"size\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -331,8 +331,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_File_seek (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -367,20 +367,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"seek\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"seek\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"seek\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -388,8 +388,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_File_close (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -404,20 +404,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"close\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"close\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"close\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -426,8 +426,8 @@ namespace PythonBindings
     Py_INCREF(Py_None);
     result = Py_None;
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_New (PyTypeObject* pytype  , PyObject *args, PyObject *kwds  )
   {
@@ -453,7 +453,7 @@ namespace PythonBindings
     XBMCAddon::xbmcvfs::Stat * apiResult;
     try
     {
-      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","Stat"); 
+      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","Stat");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = new XBMCAddon::xbmcvfs::Stat(  path  );
@@ -462,20 +462,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"new XBMCAddon::xbmcvfs::Stat\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcvfs::Stat\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"new XBMCAddon::xbmcvfs::Stat\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -483,8 +483,8 @@ namespace PythonBindings
     // transform the result
     result = makePythonInstance(apiResult,pytype,false);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_mode (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -499,20 +499,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_mode\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_mode\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_mode\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -520,8 +520,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_ino (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -536,20 +536,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_ino\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_ino\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_ino\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -557,8 +557,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_dev (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -573,20 +573,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_dev\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_dev\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_dev\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -594,8 +594,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_nlink (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -610,20 +610,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_nlink\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_nlink\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_nlink\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -631,8 +631,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_uid (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -647,20 +647,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_uid\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_uid\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_uid\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -668,8 +668,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_gid (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -684,20 +684,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_gid\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_gid\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_gid\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -705,8 +705,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_size (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -721,20 +721,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"st_size\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_size\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"st_size\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -742,8 +742,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_atime (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -758,20 +758,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"atime\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"atime\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"atime\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -779,8 +779,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_mtime (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -795,20 +795,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"mtime\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"mtime\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"mtime\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -816,8 +816,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_ctime (PyHolder* self  , PyObject *args, PyObject *kwds  )
   {
@@ -832,20 +832,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"ctime\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"ctime\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"ctime\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -853,8 +853,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("L", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_copy (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -884,8 +884,8 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pystrSource) PyXBMCGetUnicodeString(strSource,pystrSource,false,"strSource","XBMCAddon::xbmcvfs::copy"); 
-      if (pystrDestination) PyXBMCGetUnicodeString(strDestination,pystrDestination,false,"strDestination","XBMCAddon::xbmcvfs::copy"); 
+      if (pystrSource) PyXBMCGetUnicodeString(strSource,pystrSource,false,"strSource","XBMCAddon::xbmcvfs::copy");
+      if (pystrDestination) PyXBMCGetUnicodeString(strDestination,pystrDestination,false,"strDestination","XBMCAddon::xbmcvfs::copy");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::copy(  strSource,  strDestination  );
@@ -894,20 +894,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::copy\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::copy\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::copy\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -915,8 +915,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_delete (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -942,7 +942,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pyfile) PyXBMCGetUnicodeString(file,pyfile,false,"file","XBMCAddon::xbmcvfs::deleteFile"); 
+      if (pyfile) PyXBMCGetUnicodeString(file,pyfile,false,"file","XBMCAddon::xbmcvfs::deleteFile");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::deleteFile(  file  );
@@ -951,20 +951,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::deleteFile\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::deleteFile\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::deleteFile\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -972,8 +972,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_rename (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -1003,8 +1003,8 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pyfile) PyXBMCGetUnicodeString(file,pyfile,false,"file","XBMCAddon::xbmcvfs::rename"); 
-      if (pynewFile) PyXBMCGetUnicodeString(newFile,pynewFile,false,"newFile","XBMCAddon::xbmcvfs::rename"); 
+      if (pyfile) PyXBMCGetUnicodeString(file,pyfile,false,"file","XBMCAddon::xbmcvfs::rename");
+      if (pynewFile) PyXBMCGetUnicodeString(newFile,pynewFile,false,"newFile","XBMCAddon::xbmcvfs::rename");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::rename(  file,  newFile  );
@@ -1013,20 +1013,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::rename\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::rename\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::rename\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -1034,8 +1034,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_exists (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -1061,7 +1061,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::exists"); 
+      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::exists");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::exists(  path  );
@@ -1070,20 +1070,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::exists\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::exists\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::exists\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -1091,8 +1091,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_mkdir (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -1118,7 +1118,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::mkdir"); 
+      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::mkdir");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::mkdir(  path  );
@@ -1127,20 +1127,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::mkdir\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::mkdir\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::mkdir\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -1148,8 +1148,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_mkdirs (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -1175,7 +1175,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::mkdirs"); 
+      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::mkdirs");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::mkdirs(  path  );
@@ -1184,20 +1184,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::mkdirs\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::mkdirs\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::mkdirs\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -1205,8 +1205,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_rmdir (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -1235,7 +1235,7 @@ namespace PythonBindings
     bool  apiResult;
     try
     {
-      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::rmdir"); 
+      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::rmdir");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::rmdir(  path,  force  );
@@ -1244,20 +1244,20 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::rmdir\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::rmdir\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::rmdir\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
@@ -1265,8 +1265,8 @@ namespace PythonBindings
     // transform the result
     result = Py_BuildValue("b", apiResult);
 
-    return result; 
-  } 
+    return result;
+  }
 
   static PyObject* xbmcvfs_listdir (PyObject* self  , PyObject *args, PyObject *kwds  )
   {
@@ -1292,7 +1292,7 @@ namespace PythonBindings
     Tuple< std::vector< XBMCAddon::String  > ,std::vector< XBMCAddon::String  >  >  apiResult;
     try
     {
-      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::listdir"); 
+      if (pypath) PyXBMCGetUnicodeString(path,pypath,false,"path","XBMCAddon::xbmcvfs::listdir");
 
       XBMCAddon::SetLanguageHookGuard slhg(XBMCAddon::Python::PythonLanguageHook::GetIfExists(PyThreadState_Get()->interp).get());
       apiResult = XBMCAddon::xbmcvfs::listdir(  path  );
@@ -1301,36 +1301,36 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
+      return NULL;
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
+      return NULL;
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::listdir\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::listdir\""); 
-      return NULL; 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::listdir\"");
+      return NULL;
     }
 
     PyObject* result = Py_None;
 
     // transform the result
-    
+
     int vecSize = apiResult.GetNumValuesSet();
     result = PyTuple_New(vecSize);
     {
-      PyObject* pyentry1; 
+      PyObject* pyentry1;
 
       if (vecSize > 0)
       {
         std::vector< XBMCAddon::String  > & entry1 = apiResult.first();
         {
-          
+
       pyentry1 = PyList_New(0);
 
       for (std::vector<XBMCAddon::String >::iterator iter = entry1.begin(); iter != entry1.end(); ++iter)
@@ -1352,7 +1352,7 @@ namespace PythonBindings
       {
         std::vector< XBMCAddon::String  > & entry1 = apiResult.second();
         {
-          
+
       pyentry1 = PyList_New(0);
 
       for (std::vector<XBMCAddon::String >::iterator iter = entry1.begin(); iter != entry1.end(); ++iter)
@@ -1371,8 +1371,8 @@ namespace PythonBindings
 
     }
 
-    return result; 
-  } 
+    return result;
+  }
 
   static void xbmcvfs_XBMCAddon_xbmcvfs_File_Dealloc (PyHolder* self  )
   {
@@ -1389,22 +1389,22 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::File\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::File\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::File\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   static void xbmcvfs_XBMCAddon_xbmcvfs_Stat_Dealloc (PyHolder* self  )
   {
     XBMC_TRACE;
@@ -1420,34 +1420,34 @@ namespace PythonBindings
     catch (const XBMCAddon::WrongTypeException& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_TypeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_TypeError, e.GetMessage());
     }
     catch (const XbmcCommons::Exception& e)
     {
       CLog::Log(LOGERROR,"EXCEPTION: %s",e.GetMessage());
-      PyErr_SetString(PyExc_RuntimeError, e.GetMessage()); 
+      PyErr_SetString(PyExc_RuntimeError, e.GetMessage());
     }
     catch (...)
     {
       CLog::Log(LOGERROR,"EXCEPTION: Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::Stat\"");
-      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::Stat\""); 
+      PyErr_SetString(PyExc_RuntimeError, "Unknown exception thrown from the call \"XBMCAddon::xbmcvfs::Stat\"");
     }
 
     self->ob_type->tp_free((PyObject*)self);
-    
-  } 
+
+  }
   //=========================================================================
   // This section contains the initialization for the
   // Python extension for the Api class XBMCAddon::xbmcvfs::File
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcvfs_File_methods[] = { 
-    {"read", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_read, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"readBytes", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_readBytes, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"write", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_write, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"size", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_size, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"seek", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_seek, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"close", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_close, METH_VARARGS|METH_KEYWORDS, NULL }, 
+  static PyMethodDef XBMCAddon_xbmcvfs_File_methods[] = {
+    {"read", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_read, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"readBytes", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_readBytes, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"write", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_write, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"size", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_size, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"seek", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_seek, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"close", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_File_close, METH_VARARGS|METH_KEYWORDS, NULL },
     {NULL, NULL, 0, NULL}
   };
 
@@ -1461,13 +1461,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcvfs_File_Type.pythonType;
     pythonType.tp_name = "xbmcvfs.File";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcvfs_XBMCAddon_xbmcvfs_File_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcvfs_XBMCAddon_xbmcvfs_File_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcvfs_File_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcvfs_File_methods;
 
     pythonType.tp_base = NULL;
     pythonType.tp_new = xbmcvfs_XBMCAddon_xbmcvfs_File_New;
@@ -1483,17 +1483,17 @@ namespace PythonBindings
   // Python extension for the Api class XBMCAddon::xbmcvfs::Stat
   //=========================================================================
   // All of the methods on this class
-  static PyMethodDef XBMCAddon_xbmcvfs_Stat_methods[] = { 
-    {"st_mode", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_mode, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_ino", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_ino, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_dev", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_dev, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_nlink", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_nlink, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_uid", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_uid, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_gid", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_gid, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_size", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_size, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_atime", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_atime, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_mtime", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_mtime, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"st_ctime", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_ctime, METH_VARARGS|METH_KEYWORDS, NULL }, 
+  static PyMethodDef XBMCAddon_xbmcvfs_Stat_methods[] = {
+    {"st_mode", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_mode, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_ino", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_ino, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_dev", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_dev, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_nlink", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_nlink, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_uid", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_uid, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_gid", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_gid, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_size", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_size, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_atime", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_atime, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_mtime", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_mtime, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"st_ctime", (PyCFunction)xbmcvfs_XBMCAddon_xbmcvfs_Stat_st_ctime, METH_VARARGS|METH_KEYWORDS, NULL },
     {NULL, NULL, 0, NULL}
   };
 
@@ -1507,13 +1507,13 @@ namespace PythonBindings
     PyTypeObject& pythonType = TyXBMCAddon_xbmcvfs_Stat_Type.pythonType;
     pythonType.tp_name = "xbmcvfs.Stat";
     pythonType.tp_basicsize = sizeof(PyHolder);
-    pythonType.tp_dealloc = (destructor)xbmcvfs_XBMCAddon_xbmcvfs_Stat_Dealloc; 
+    pythonType.tp_dealloc = (destructor)xbmcvfs_XBMCAddon_xbmcvfs_Stat_Dealloc;
 
 
     pythonType.tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE;
 
     pythonType.tp_doc = NULL;
-    pythonType.tp_methods = XBMCAddon_xbmcvfs_Stat_methods; 
+    pythonType.tp_methods = XBMCAddon_xbmcvfs_Stat_methods;
 
     pythonType.tp_base = NULL;
     pythonType.tp_new = xbmcvfs_XBMCAddon_xbmcvfs_Stat_New;
@@ -1525,15 +1525,15 @@ namespace PythonBindings
   //=========================================================================
 
 
-  static PyMethodDef xbmcvfs_methods[] = { 
-    {"copy", (PyCFunction)xbmcvfs_copy, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"delete", (PyCFunction)xbmcvfs_delete, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"rename", (PyCFunction)xbmcvfs_rename, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"exists", (PyCFunction)xbmcvfs_exists, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"mkdir", (PyCFunction)xbmcvfs_mkdir, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"mkdirs", (PyCFunction)xbmcvfs_mkdirs, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"rmdir", (PyCFunction)xbmcvfs_rmdir, METH_VARARGS|METH_KEYWORDS, NULL }, 
-    {"listdir", (PyCFunction)xbmcvfs_listdir, METH_VARARGS|METH_KEYWORDS, NULL }, 
+  static PyMethodDef xbmcvfs_methods[] = {
+    {"copy", (PyCFunction)xbmcvfs_copy, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"delete", (PyCFunction)xbmcvfs_delete, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"rename", (PyCFunction)xbmcvfs_rename, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"exists", (PyCFunction)xbmcvfs_exists, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"mkdir", (PyCFunction)xbmcvfs_mkdir, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"mkdirs", (PyCFunction)xbmcvfs_mkdirs, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"rmdir", (PyCFunction)xbmcvfs_rmdir, METH_VARARGS|METH_KEYWORDS, NULL },
+    {"listdir", (PyCFunction)xbmcvfs_listdir, METH_VARARGS|METH_KEYWORDS, NULL },
     {NULL, NULL, 0, NULL}
   };
 
@@ -1575,7 +1575,7 @@ namespace PythonBindings
 
    // constants
    PyModule_AddStringConstant(module, "__author__", "Team Kodi <http://kodi.tv>");
-   PyModule_AddStringConstant(module, "__date__", "Mon Feb 18 19:37:45 GMT 2019");
+   PyModule_AddStringConstant(module, "__date__", "Mon Apr 22 18:48:11 GMT 2019");
    PyModule_AddStringConstant(module, "__version__", "2.26.0");
    PyModule_AddStringConstant(module, "__credits__", "Team Kodi");
    PyModule_AddStringConstant(module, "__platform__", "ALL");
@@ -1585,5 +1585,3 @@ namespace PythonBindings
   }
 
 } // end PythonBindings namespace for python type definitions
-
-
