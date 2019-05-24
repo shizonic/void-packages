@@ -12,4 +12,3 @@ Reason: rustc_codegen_llvm attempts to link against the host's llvm without this
              }
          } else if lib.starts_with("-l") {
              println!("cargo:rustc-link-lib={}", &lib[2..]);
-
