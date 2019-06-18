@@ -36,7 +36,7 @@ do_configure() {
 			*) msg_error "$pkgver: cannot be cross compiled for ${XBPS_TARGET_MACHINE}\n" ;;
 		esac
 	fi
-	./configure --prefix=/usr --shared-zlib \
+	./configure --prefix=/usr --shared-zlib --build-v8-with-gn \
 		$(vopt_if icu --with-intl=system-icu) \
 		$(vopt_if http_parser --shared-http-parser) \
 		$(vopt_if ssl --shared-openssl) \
