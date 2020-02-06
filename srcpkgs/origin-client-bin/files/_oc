@@ -1,0 +1,772 @@
+#compdef oc
+
+_oc_output_format=(
+    {-o,--output}"[Output format]:output:(json yaml template templatefile wide)"
+)
+
+__oc_top_commands() {
+    local -a list
+    # oc help | grep -iv deprecated:|gsed -n "/Basic Command/,/Use .oc help/ { /^ / { s/^[ ]*//; p;; } ;}"|gsed -r "s/ +/:'/;s/$/'/;s/^/    /"|sort -n
+    list=(
+        adm:'Tools for managing a cluster'
+        annotate:'Update the annotations on a resource'
+        apply:'Apply a configuration to a resource by filename or stdin'
+        attach:'Attach to a running container.'
+        autoscale:'Autoscale a deployment config or replication controller'
+        cancel-build:'Cancel a pending or running build'
+        config:'Change configuration files for the client'
+        convert:'Convert config files between different API versions'
+        create:'Create a resource by filename or stdin'
+        debug:'Launch a new instance of a pod for debugging'
+        delete:'Delete one or more resources'
+        deploy:'View, start, cancel, or retry a deployment'
+        describe:'Show details of a specific resource or group of resources'
+        edit:'Edit a resource on the server'
+        exec:'Execute a command in a container.'
+        explain:'Documentation of resources.'
+        export:'Export resources so they can be used elsewhere'
+        expose:'Expose a replicated application as a service or route'
+        get:'Display one or many resources'
+        help:'Help about any command'
+        import-image:'Imports images from a Docker registry'
+        label:'Update the labels on a resource'
+        login:'Log in to a server'
+        logout:'End the current server session'
+        logs:'Print the logs for a resource.'
+        new-app:'Create a new application'
+        new-build:'Create a new build configuration'
+        new-project:'Request a new project'
+        patch:'Update field(s) of a resource using strategic merge patch.'
+        policy:'Manage authorization policy'
+        port-forward:'Forward one or more local ports to a pod.'
+        process:'Process a template into list of resources'
+        project:'Switch to another project'
+        proxy:'Run a proxy to the Kubernetes API server'
+        replace:'Replace a resource by filename or stdin.'
+        rollback:'Revert part of an application back to a previous deployment'
+        rsh:'Start a shell session in a pod'
+        rsync:'Copy files between local filesystem and a pod'
+        run:'Run a particular image on the cluster.'
+        scale:'Change the number of pods in a deployment'
+        secrets:'Manage secrets'
+        serviceaccounts:'Manage service accounts in your project.'
+        set:'Commands that help set specific features on objects'
+        start-build:'Start a new build'
+        status:'Show an overview of the current project'
+        tag:'Tag existing images into image streams'
+        types:'An introduction to concepts and types'
+        version:'Display version'
+        whoami:'Return information about the current session'
+    )
+    _describe -t top-commands 'top commands' list
+}
+
+__oc_set_commands() {
+    local -a list
+    #oc set -h 2>&1 | grep -iv deprecated:|gsed -n "/Configure application resources/,/Use .oc set COMMAND/ { /^ / { s/^[ ]*//; p;; } ;}"|gsed -r "s/ +/:'/;s/$/'/;s/^/    /"|sort -n
+    list=(
+        env:'Update environment variables on a pod template'
+        oc:'set COMMAND [options]'
+        probe:'Update a probe on a pod template'
+        triggers:'Update the triggers on a build or deployment config'
+        volumes:'Update volumes on a pod template'
+    )
+    _describe -t top-commands 'oc set commands' list
+}
+
+__oc_adm_top_commands() {
+    local -a list
+    # oc adm -h 2>&1 | grep -iv deprecated:|gsed -n "/Basic Command/,/Use .oc adm help/ { /^ / { s/^[ ]*//; p;; } ;}"|gsed -r "s/ +/:'/;s/$/'/;s/^/    /"|sort -n
+    list=(
+        build-chain:'Output the inputs and dependencies of your builds'
+        ca:'Manage certificates and keys'
+        config:'Change configuration files for the client'
+        create-api-client-config:'Create a config file for connecting to the server as a user'
+        create-bootstrap-policy-file:'Create the default bootstrap policy'
+        create-bootstrap-project-template:'Create a bootstrap project template'
+        create-error-template:'Create an error page template'
+        create-kubeconfig:'Create a basic .kubeconfig file from client certs'
+        create-login-template:'Create a login template'
+        create-node-config:'Create a configuration bundle for a node'
+        create-provider-selection-template:'Create a provider selection template'
+        diagnostics:'Diagnose common cluster problems'
+        groups:'Manage groups'
+        ipfailover:'Install an IP failover group to a set of nodes'
+        manage-node:'Manage nodes - list pods, evacuate, or mark ready'
+        new-project:'Create a new project'
+        overwrite-policy:'Reset the policy to the default values'
+        pod-network:'Manage pod network'
+        policy:'Manage policy'
+        prune:'Remove older versions of resources from the server'
+        registry:'Install the integrated Docker registry'
+        router:'Install a router'
+    )
+    _describe -t top-commands 'top commands' list
+}
+
+__oc_adm_policy_top_commands() {
+    local -a list
+    # oc adm policy -h 2>&1 | grep -iv deprecated:|gsed -n "/Discover/,/Use .oc adm policy help/ { /^ / { s/^[ ]*//; p;; } ;}"|gsed -r "s/ +/:'/;s/$/'/;s/^/    /"|sort -n
+    list=(
+        add-cluster-role-to-group:'Add groups to a role for all projects in the cluster'
+        add-cluster-role-to-user:'Add users to a role for all projects in the cluster'
+        add-role-to-group:'Add groups to a role in the current project'
+        add-role-to-user:'Add users or serviceaccounts to a role in the current project'
+        add-scc-to-group:'Add groups to a security context constraint'
+        add-scc-to-user:'Add users or serviceaccount to a security context constraint'
+        reconcile-cluster-role-bindings:'Replace cluster role bindings to match the recommended bootstrap policy'
+        reconcile-cluster-roles:'Replace cluster roles to match the recommended bootstrap policy'
+        reconcile-sccs:'Replace cluster SCCs to match the recommended bootstrap policy'
+        remove-cluster-role-from-group:'Remove group from role for all projects in the cluster'
+        remove-cluster-role-from-user:'Remove user from role for all projects in the cluster'
+        remove-group:'Remove group from the current project'
+        remove-role-from-group:'Remove group from role in the current project'
+        remove-role-from-user:'Remove user from role in the current project'
+        remove-scc-from-group:'Remove group from scc'
+        remove-scc-from-user:'Remove user from scc'
+        remove-user:'Remove user from the current project'
+        who-can:'List who can perform the specified action on a resource'
+    )
+    _describe -t top-commands 'top commands' list
+}
+
+__oc_resources() {
+    local -a kresources oresources
+    # curl -H "Authorization: Bearer XXXXX" https://openshift-master:8443/api/v1/ | jq '[.resources[].name]' | grep -iv '/' | gsed -r 's/ +"//;s/",$//;s/^/    /' | sort -n
+    kresources=(
+        bindings
+        componentstatuses
+        configmaps
+        endpoints
+        events
+        limitranges
+        namespaces
+        nodes
+        persistentvolumeclaims
+        persistentvolumes
+        pods
+        podtemplates
+        replicationcontrollers
+        resourcequotas
+        secrets
+        securitycontextconstraints
+        serviceaccounts
+        services
+    )
+    # curl -H "Authorization: Bearer XXXXX" https://openshift-master:8443/oapi/v1/ | jq '[.resources[].name]' | grep -iv '/' | gsed -r 's/ +"//;s/",$//;s/^/    /' | sort -n
+    oresources=(
+        buildconfigs
+        builds
+        clusternetworks
+        clusterpolicies
+        clusterpolicybindings
+        clusterrolebindings
+        clusterroles
+        deploymentconfigrollbacks
+        deploymentconfigs
+        generatedeploymentconfigs
+        groups
+        hostsubnets
+        identities
+        images
+        imagestreamimages
+        imagestreamimports
+        imagestreammappings
+        imagestreams
+        imagestreamtags
+        localresourceaccessreviews
+        localsubjectaccessreviews
+        netnamespaces
+        oauthaccesstokens
+        oauthauthorizetokens
+        oauthclientauthorizations
+        oauthclients
+        policies
+        policybindings
+        processedtemplates
+        projectrequests
+        projects
+        resourceaccessreviews
+        rolebindings
+        roles
+        routes
+        subjectaccessreviews
+        templates
+        useridentitymappings
+        users
+    )
+    _describe -t kresources 'kubernetes resources' kresources
+    _describe -t oresources 'openshift resources' oresources
+}
+
+__oc_types () {
+    local -a k8t ost
+
+    k8t=(pods po
+         replicationcontrollers rc
+         daemonsets ds
+         services svc
+         events ev
+         secrets
+         configmaps
+         persistentvolumes pv
+         persistentvolumeclaims pvc
+         limitranges limits
+         resourcequotas quota
+         nodes no
+         namespaces ns
+         componentstatuses cs
+         endpoints ep
+         serviceaccounts sa
+         securitycontextconstraints scc)
+
+    ost=(deploymentconfigs dc
+          buildconfigs bc
+          builds
+          routes
+          projects
+          images
+          imagestreams is
+          imagestreamtags istag
+          imagestreamimages isimage
+          templates
+          users
+          groups
+          identities
+          policies
+          policybindings
+          roles
+          rolebindings
+          clusterpolicies
+          clusterpolicybindings
+          clusterroles
+          clusterrolebindings
+          oauthclients
+          oauthaccesstokens
+          hostsubnets
+          clusternetworks)
+
+    k8t_str="openshift_types:OpenShift Types:compadd -a k8t"
+    ost_str="openshift_types:OpenShift Types:compadd -a ost"
+    [[ $1 == "k8" ]] && astr=$k8t_str
+    [[ $1 == "os" ]] && astr=$ost_str
+    [[ -z $astr ]] && astr="$k8t_str $ost_str"
+
+    _alternative $astr
+}
+
+__oc_k8s_types() { __oc_types k8 ;}
+
+__oc_contexts () {
+    compadd $(oc config view -o template \
+                 --template='{{$dot := .}}{{range $element := (index $dot "contexts")}}{{ .name }} {{end}}')
+}
+
+__oc_all_roles() {
+    __oc_get_clusterroles
+    __oc_get_roles
+}
+__oc_containers () { compadd $(oc get pods -o template --template='{{range.items}}{{range .spec.containers}}{{.name}}
+{{end}}{{end}}' | sort | uniq | tr '\n' ' ') }
+__oc_get () { compadd $(oc get $1 $2 -o template --template='{{range.items}}{{.metadata.name}} {{end}}')}
+__oc_pods () { __oc_get pods}
+__oc_pods_running () { __oc_get pods }
+__oc_build_pods () { __oc_get pods "-l openshift.io/build.name" }
+__oc_deployed_pods () { __oc_get pods "-l deploymentconfig" }
+__oc_build () { __oc_get build }
+__oc_build_configs () { __oc_get bc }
+__oc_deployment_configs () { __oc_get dc }
+__oc_project () {__oc_get project }
+__oc_namespace () {__oc_get ns }
+__oc_route () {__oc_get route }
+__oc_get_persistentVolumes () {__oc_get pv }
+__oc_get_persistentVolumeClaims () {__oc_get pvc }
+__oc_get_imageStream () {__oc_get is }
+__oc_get_imageStreamTags () { compadd $(oc get is -o template --template='{{range .items}}{{$is:=.metadata.name}}{{range .status.tags}}{{$is}}:{{.tag}} {{end}}{{end}}') }
+__oc_get_imageStreamImages () { compadd $(oc get is -o template --template='{{range .items}}{{$is:=.metadata.name}}{{range .status.tags}}{{range .items}}{{$is}}@{{.image}} {{end}}{{end}}{{end}}') }
+__oc_get_template () {__oc_get template }
+__oc_get_secrets () {__oc_get secrets }
+__oc_get_configmaps () {__oc_get configmaps }
+__oc_get_replicationControllers () { __oc_get rc }
+__oc_get_serviceAccounts () { __oc_get sa }
+__oc_get_service () { __oc_get service }
+__oc_get_node () { __oc_get node }
+__oc_get_policies () { __oc_get policies }
+__oc_get_rolebindings () { __oc_get rolebindings }
+__oc_get_limits () { __oc_get limits }
+__oc_get_quota () { __oc_get quota }
+__oc_get_users () { __oc_get users }
+__oc_get_groups () { __oc_get groups }
+__oc_get_endpoints () { __oc_get endpoints }
+__oc_get_securityContextConstraints () { __oc_get scc }
+__oc_get_policyBindings () { __oc_get policybindings }
+__oc_get_roles () { __oc_get roles }
+__oc_get_oauthclients () { __oc_get oauthclients }
+__oc_get_clusterpolicies () { __oc_get clusterpolicies }
+__oc_get_clusterpolicybindings () { __oc_get clusterpolicybindings }
+__oc_get_clusterroles () { __oc_get clusterroles }
+__oc_get_clusterrolebindings () { __oc_get clusterrolebindings }
+
+__oc_avail_shell() {
+    rets=(/bin/zsh /bin/sh /bin/bash)
+    [[ -e /etc/shells ]] && rets=(${(Z+Cn+)"$(</etc/shells)"})
+    compadd $rets
+}
+
+_oc_hosts_default_port() {
+    # NOTE(chmou): 8443 should prob need to be a variable
+    _combination -s '[@:]' '' users-hosts hosts -S ":8443 " "$@" -
+}
+
+__pods_and_files() {
+    if compset -P '*:'; then
+        _wanted users expl 'files' _files -S '' && ret=0
+    elif compset -S ':*'; then
+        _wanted hosts expl 'pods' __oc_pods_running && ret=0
+    else
+        _alternative \
+            'pods:remote pod:__oc_pods_running -r: -S:' \
+            'files:: _files'
+    fi
+
+}
+
+__oc_subcommand () {
+    case "$words[1]" in
+        (adm)
+            local curcontext="$curcontext" state
+            _arguments -C \
+                '(-): :->command' \
+                '(-)*:: :->option-or-argument'
+            case $state in
+                (command)
+                    __oc_adm_top_commands
+                    ;;
+                (option-or-argument)
+                    curcontext=${curcontext%:*:*}:oc-$words[1]:
+                    __oc_adm_subcommand
+                    ;;
+            esac
+            ;;
+        (set)
+            local curcontext="$curcontext" state
+            _arguments -C \
+                '(-): :->command' \
+                '(-)*:: :->option-or-argument'
+            case $state in
+                (command)
+                    __oc_set_commands
+                    ;;
+                (option-or-argument)
+                    curcontext=${curcontext%:*:*}:oc-$words[1]:
+                    #TODO(chmouel): Lazy b*
+                    ;;
+            esac
+            ;;
+        (annotate)
+            _arguments '1: :__oc_types'
+            ;;
+        (build-logs)
+            _arguments -C -s -S -A "-*" \
+                {-f,--follow}"[Specify whether logs should be followed; default is true]" \
+                {-w,--nowait}"[Specify whether to return immediately without waiting for logs to be available; default is false]" \
+                '1:ocbuild:__oc_build'
+            ;;
+        (cancel-build)
+            _arguments -C -s -S -A "-*" \
+                "--dump-logs[Specify if the build logs for the cancelled build should be shown]" \
+                "--restart[Specify if a new build should be created after the current build is cancelled]" \
+                '1:ocbuild:__oc_build'
+            ;;
+        (config)
+            _arguments \
+                '1: :(view use-context)'
+            ;;
+        (create)
+            _arguments \
+                {-f,--filename=}"[Filename, directory, or URL to file to use to create the resource]:filename:_files" \
+                '1:command:(namespace secret configmap serviceaccount route)'
+            ;;
+        (apply|replace|process)
+            _arguments \
+                {-f,--filename=}"[Filename, directory, or URL to file to use to create the resource]:filename:_files"
+            ;;
+        (exec)
+            _arguments -C -s -S -A "-*" \
+                {-p,--pod}"[Pod name]:pod:__oc_pods_running" \
+                {-i,--stdin}"[Pass stdin to the container]" \
+                {-t,--tty}"[Stdin is a TTY]" \
+                '*::arguments: _normal'
+            ;;
+        (get|export)
+            _arguments \
+                $_oc_output_format \
+                "--all-namespaces[Select all resources in the namespace of the specified resource types]" \
+                ':octypes:__oc_types'
+            ;;
+        (deploy)
+            _arguments \
+                $_oc_output_format \
+                "--cancel[Cancel the in-progress deployment]" \
+                "--enable-triggers[Enables all image triggers for the deployment config]" \
+                "--latest[Start a new deployment now]" \
+                "--retry[etry the latest failed deployment.]" \
+                ':octypes:__oc_deployment_configs'
+        ;;
+        (delete|describe|edit|volume)
+            _arguments \
+                ':octypes:__oc_types'
+            ;;
+        (start-build)
+            _arguments -C -s -S -A "-*" \
+                "--follow[Start a build and watch its logs until it completes or fails]" \
+                "--from-build=[Specify the name of a build which should be re-run]:from-build:" \
+                "--from-webhook=[Specify a webhook URL for an existing BuildConfign to trigger]:from-webhook:" \
+                "--git-post-receive=[The contents of the post-receive hook to trigger a build]:" \
+                "--git-repository=[The path to the git repository for post-receive; defaults to the current directory]:git-repo:_files -/" \
+                "--list-webhooks=[List the webhooks for the specified BuildConfig or build]:webhooks:(all generic github)" \
+                '1:ocbuild:__oc_build_configs'
+            ;;
+        (rsh)
+            _arguments -C -s -S -A "-*" \
+                {-s,--shell}"[shell]:shells:__oc_avail_shell" \
+                ':ocrunning:__oc_pods_running'
+            ;;
+        (login)
+            _arguments \
+                {-u,--user}"[Username, will prompt if not provided]:users:_users" \
+                {-p,--password}"[Password, will prompt if not provided]:password:" \
+                ':host_port:_oc_hosts_default_port'
+            ;;
+        (logs)
+            _arguments \
+				"--all-containers[Get all containerss logs in the pod(s)]" \
+				"--limit-bytes=[Maximum bytes of logs to return. Defaults to no limit.]:" \
+				"--pod-running-timeout=[The length of time (like 5s, 2m) to wait until at least one pod is running]:" \
+				{-l,--selector}="[Selector (label query) to filter on]" \
+				{-f,--follow}"[Specify if the logs should be streamed.]" \
+				"--tail=[Lines of recent log file to display]" \
+				{-p,--previous}"[Print the logs for the previous instance of the container in a pod if it exists.]" \
+                {-c,--container}"[The container to use for printing its logs]:container:__oc_containers" \
+                '1:ocrunning:__oc_pods'
+            ;;
+        (new-app)
+            _arguments -C \
+                "--code=[Source code to use to build this application]:code_path:_path_files -/" \
+                "--context-dir=[Context directory to be used for the build]:context_dir:_path_files -/" \
+                "--docker-image=[Name of a Docker image to include in the app]:docker_image:" \
+                {-e,--env}"[Specify key value pairs of environment variables to set into each container]:envs:" \
+                {-f,--file}"[Path to a template file to use for the app]:template_file:_files" \
+                "--group=[Indicate components that should be grouped together as <comp1>+<comp2>]:group:" \
+                "--image=[Name of an image stream to use in the app. (deprecated)]:image:" \
+                {-i,--image-stream}"[Name of an image stream to use in the app]:image_stream:__oc_get_imageStream" \
+                "--insecure-registry[Insecure registry]" \
+                {-l,--label}"[Label to set in all resources for this application]:labels:" \
+                {-L,--list}"[List all local templates and image streams that can be used to create]:list:" \
+                "--no-headers[When using the default output, don't print headers]" \
+                "--name=[Set name to use for generated application artifacts]:name:" \
+                $_oc_output_format \
+                "--output_template=[Template string or path to template file to use]:template:_files" \
+                "--output-version=[Output the formatted object with the given version]:output_version" \
+                {-p,--param}"[Specify a list of key value pairs to override]:params:" \
+                {-S,--search}"[Search for components that match the arguments provided and print the results]" \
+                "--strategy=[Specify the build strategy to use if you don't want to detect]:strategy:(docker source)" \
+                "--template=[Name of a stored template to use in the app]:stored_template:__oc_get_template" \
+                ':path:_files'
+            ;;
+        (new-project)
+            _arguments \
+                "--description=[Project description]:description:" \
+                "--display-name=[Project display name]:displayname:"
+            ;;
+        (project)
+            _arguments '1:ocrunning:__oc_project'
+            ;;
+        (rsync)
+            _arguments -C \
+                {-c,--container}"[Container within the pod]:running containers:__oc_containers" \
+                "--delete=[Delete files not present in source]:delete_file:(true false)" \
+                {-q,--quiet=}"[Suppress non-error messages]:quiet:(true false)" \
+                "--strategy=[Specify which strategy to use for copy: rsync, rsync-daemon, or tar]:strategy:(rsync rsync-daemon tar)" \
+                '1:files:__pods_and_files' \
+                '2:files:__pods_and_files'
+            ;;
+        (secrets)
+            _arguments '1:ocrunning:(new new-basicauth new-sshauth new-dockercfg add)' # TODO(chmouel): extend properly
+            ;;
+        (serviceaccounts)
+            _arguments \
+                '1:command:(get-token new-token)' \
+                '2:service account:__oc_get_serviceAccounts'
+            ;;
+        (import-image)
+            _arguments '1:ocrunning:__oc_get_imageStream'
+            ;;
+        (scale)
+            _arguments \
+                "--current-replicas=[Precondition for current size.]:current-replicas:" \
+                "--replicas=[The new desired number of replicas.]:replicas:" \
+                '1:ocscale:(rc dc)'
+            ;;
+        (expose)
+            _arguments \
+                "--dry-run=[If true, only print the object that would be sent, without creating it.]:dry-run:" \
+                "--hostname=[Set a hostname for the new route]:hostname:" \
+                "--name=[The name for the newly created object.]:name:" \
+                "--port=[The port that the service should serve on. Copied from the resource being exposed, if unspecified]:port:" \
+                "--protocol=[The network protocol for the service to be created. Default is 'tcp'.]:protocol:" \
+                "--selector=[A label selector to use for this service. If empty (the default) infer the selector from the replication controller.]:selector:" \
+                "--session-affinity=[If non-empty, set the session affinity for the service to this; legal values: 'None', 'ClientIP']:session-affinity:" \
+                "--target-port=[Name or number for the port on the container that the service should direct traffic to. Optional.]:target-port:" \
+                "--type=[Type for this service: ClusterIP, NodePort, or LoadBalancer. Default is 'ClusterIP'.]:type:" \
+                '1:ocexpose:(pod rc dc svc)'
+            ;;
+        (explain)
+            _arguments \
+                "--recursive=[Print the fields of fields (Currently only 1 level deep)]:recursive:" \
+                '1:ocexplain:__oc_k8s_types'
+            ;;
+        (port-forward)
+            _arguments \
+                '1:ocportforward:__oc_deployed_pods'
+            ;;
+        (status)
+            _arguments \
+                "-o=[Output format]:output:(dot)"
+            ;;
+        (whoami)
+            _arguments \
+                {-c,--context}"[Print the current user context name]::" \
+                {-t,--token}"[Print the token the current session is using]::"
+            ;;
+        (help)
+		    _arguments \
+                ':top-commands:__oc_top_commands'
+            ;;
+         (*)
+             _message 'Unkown sub command'
+    esac
+
+    case "$words[2]" in
+        (po|pod|pods) __oc_pods ;;
+        (rc|replicationcontrollers|replicationControllers) __oc_get_replicationControllers ;;
+        (svc|service|services) __oc_get_service;;
+        (dc|deploymentConfigs|deploymentConfig) __oc_deployment_configs;;
+        (bc|buildConfigs|buildConfig) __oc_build_configs ;;
+        (build|builds) __oc_build;;
+        (route|routes) __oc_route;;
+        (project|projects) __oc_project;;
+        (secret|secrets) __oc_get_secrets;;
+        (configmap|configmaps) __oc_get_configmaps;;
+        (is|imageStreams) __oc_get_imageStream;;
+        (istag|imageStreamTags) __oc_get_imageStreamTags;;
+        (isimage|imageStreamImages) __oc_get_imageStreamImages;;
+        (pv|persistentVolumes) __oc_get_persistentVolumes;;
+        (pvc|persistentVolumeClaims) __oc_get_persistentVolumeClaims;;
+        (sa|serviceAccounts) __oc_get_serviceAccounts;;
+        (template|templates) __oc_get_template;;
+        (policy|policies) __oc_get_policies;;
+        (rolebinding|rolebindings) __oc_get_rolebindings;;
+        (limits|limitranges) __oc_get_limits;;
+        (quota|resourcequotas) __oc_get_quota;;
+        (no|node|nodes) __oc_get_node;;
+        (ns|namespace|namespaces) __oc_namespace;;
+        (user|users) __oc_get_users;;
+        (group|groups) __oc_get_groups;;
+        (ep|endpoint|endpoints) __oc_get_endpoints;;
+        (scc|securitycontextconstraints) __oc_get_securityContextConstraints;;
+        (policybindings|policybindingss) __oc_get_policyBindings;;
+        (role|roles) __oc_get_roles;;
+        (oauthclient|oauthclients) __oc_get_oauthclients;;
+        (clusterpolicy|clusterpolicies) __oc_get_clusterpolicies;;
+        (clusterpolicybinding|clusterpolicybindings) __oc_get_clusterpolicybindings;;
+        (clusterrole|clusterroles) __oc_get_clusterroles;;
+        (clusterrolebinding|clusterrolebindings) __oc_get_clusterrolebindings;;
+        (use-context) __oc_contexts;;
+    esac
+
+}
+
+__oc_adm_subcommand () {
+    case "$words[1]" in
+        (diagnostics)
+            _arguments \
+                "--host=[Look for systemd and journald units even without master/node config]:host:(true false)" \
+                "--prevent-modification=[May be set to prevent diagnostics making any changes via the API]:preventmodif:(true false)" \
+                {-l,--diaglevel}'[Level of diagnostic output (0-4)]:diaglevel:((0\:"Debug" 1\:"Info" 2\:"Notice" 3\:"Warn" 4\:"Error"))' \
+                '*:diagnostic:(AnalyzeLogs ClusterRegistry ClusterRoleBindings ClusterRoles ClusterRouter ConfigContexts DiagnosticPod MasterConfigCheck MasterNode NodeConfigCheck NodeDefinitions UnitStatus)'
+            ;;
+        (new-project)
+            _arguments \
+                "--admin=[Project admin username]:user:__oc_get_users" \
+                "--admin-role=[Project admin role name in the cluster policy]:role:__oc_all_roles" \
+                "--description=[Project description]:description:" \
+                "--display-name=[Project display name]:display name:" \
+                "--node-selector=[Restrict pods onto nodes matching given label selector. Format: '<key1>=<value1>, <key2>=<value2>...'. Specifying \"\" means any node, not default. If unspecified, cluster default node selector will be used]:node selector:" \
+                '1:project:()'
+            ;;
+        (manage-node)
+            _arguments \
+                "--schedulable=[Control pod schedulability on the node]:schedulable:(true false)" \
+                "--evacuate=[Migrate all/selected pods on the node]:evacuate:(true false)" \
+                "--list-pods=[List all/selected pods on the node. Printer flags --output, etc. are only valid for this option.]:list:(true false)" \
+                '1:node:__oc_get_node'
+            ;;
+        (build-chain)
+            _arguments \
+                "--all=[Build dependency tree for the specified image stream tag across all namespaces]:all:(true false)" \
+                "--trigger-only=[If true, only include dependencies based on build triggers. If false, include all dependencies.]:evacuate:(true false)" \
+                '1:ist:__oc_get_imageStreamTags'
+            ;;
+        (groups)
+            local curcontext="$curcontext" state
+            _arguments -C \
+                '(-): :->command' \
+                '(-)*:: :->option-or-argument'
+            case $state in
+                (command)
+                    compadd "new" "add-users" "remove-users" "sync" "prune"
+                    ;;
+                (option-or-argument)
+                    curcontext=${curcontext%:*:*}:oc-$words[1]:
+                    __oc_adm_groups_subcommand
+                    ;;
+            esac
+            ;;
+        (policy)
+            local curcontext="$curcontext" state
+            _arguments -C \
+                '(-): :->command' \
+                '(-)*:: :->option-or-argument'
+            case $state in
+                (command)
+                    __oc_adm_policy_top_commands
+                    ;;
+                (option-or-argument)
+                    curcontext=${curcontext%:*:*}:oc-$words[1]:
+                    __oc_adm_policy_subcommand
+                    ;;
+            esac
+            ;;
+        (*)
+            _message 'Unkown sub command'
+    esac
+}
+
+__oc_adm_groups_subcommand () {
+    case "$words[1]" in
+        (new)
+            _arguments \
+                '1:group:()' \
+                '*:users:__oc_get_users'
+            ;;
+        (add-users|remove-user)
+            _arguments \
+                '1:group:__oc_get_groups' \
+                '*:users:__oc_get_users'
+            ;;
+    esac
+}
+
+__oc_adm_policy_subcommand () {
+    case "$words[1]" in
+        (add-role-to-group|remove-role-from-group)
+            _arguments \
+                '1:role:__oc_all_roles' \
+                '*:groups:__oc_get_groups'
+            ;;
+        (add-role-to-user|remove-role-from-user)
+            _arguments \
+                '1:role:__oc_all_roles' \
+                '*:users:__oc_get_users'
+            ;;
+        (add-cluster-role-to-group|remove-cluster-role-from-group)
+            _arguments \
+                '1:clusterrole:__oc_get_clusterroles' \
+                '*:groups:__oc_get_groups'
+            ;;
+        (add-cluster-role-to-user|remove-cluster-role-from-user)
+            _arguments \
+                '1:clusterrole:__oc_get_clusterroles' \
+                '*:users:__oc_get_users'
+            ;;
+        (add-scc-to-group|remove-scc-from-group)
+            _arguments \
+                '1:scc:__oc_get_securityContextConstraints' \
+                '*:groups:__oc_get_groups'
+            ;;
+        (add-scc-to-user|remove-scc-from-user)
+            _arguments \
+                {-z,--serviceaccount}"[service account in the current namespace to use as a user]:service account:__oc_get_serviceAccounts" \
+                '1:scc:__oc_get_securityContextConstraints' \
+                '*:users:__oc_get_users'
+            ;;
+        (remove-group)
+            _arguments \
+                '*:groups:__oc_get_groups'
+            ;;
+        (remove-user)
+            _arguments \
+                '*:users:__oc_get_users'
+            ;;
+        (who-can)
+            _arguments \
+                "--all-namespaces[If present, list who can perform the specified action in all namespaces.]" \
+                '1:verb:(get list create update delete deletecollection watch)' \
+                '2:resource:__oc_resources'
+            ;;
+        (*)
+            _message 'Unkown sub command'
+    esac
+}
+
+_oc () {
+    local curcontext="$curcontext" state common_options
+    common_options=(
+        '--alsologtostderr=[log to standard error as well as files]:log also to stderr:(true false)'
+        '--api-version=[The API version to use when talking to the server]:api version:'
+        '--certificate-authority=[Path to a cert. file for the certificate authority.]:certa auth:_files'
+        '--client-certificate=[Path to a client cert file for TLS.]:client cert:_files'
+        '--client-key=[Path to a client key file for TLS.]:client key:_files'
+        '--cluster=[The name of the kubeconfig cluster to use]:cluster:'
+        '--config=[Path to the config file to use for CLI requests.]:config file:_files'
+        '--context=[The name of the kubeconfig context to use]:context:__oc_contexts'
+        '--google-json-key=[The Google Cloud Platform Service Account JSON Key to use for authentication.]:google json:'
+        '--httptest.serve=[if non-empty, httptest.NewServer serves on this address and blocks]:httptest:'
+        '--insecure-skip-tls-verify=[If use insecure HTTPS connections.]:insecure:(true false)'
+        '--log-backtrace-at=[when logging hits line file:N, emit a stack trace]:log backtrace:'
+        '--log-dir=[If non-empty, write log files in this directory]:log dir:_directories'
+        '--log-flush-frequency=[Maximum number of seconds between log flushes]:log flush:'
+        '--loglevel=[Set the level of log output (0-5)]:loglevel:(0 1 2 3 4 5)'
+        '--logtostderr=[log to standard error instead of files]:log to stderr:(true false)'
+        '--match-server-version=[Require server version to match client version]:match version:(true false)'
+        {-n,--namespace}'[If present, the namespace scope for this CLI request.]:namespace:__oc_project'
+        '--server=[The address and port of the Kubernetes API server]:server:'
+        '--stderrthreshold=[logs at or above this threshold go to stderr]:stderr:'
+        '--token=[Bearer token for authentication to the API server.]:token:'
+        '--user=[The name of the kubeconfig user to use]:user:'
+        '--v=[log level for V logs]:'
+        '--validate=[If true, use a schema to validate the input before sending it]:validate:(true false)'
+        '--vmodule=[comma-separated list of pattern=N settings for file-filtered logging]:vmodule:')
+
+    _arguments -C \
+         ${common_options} \
+        '(-): :->command' \
+        '(-)*:: :->option-or-argument'
+    case $state in
+        (command)
+            __oc_top_commands
+            ;;
+        (option-or-argument)
+            curcontext=${curcontext%:*:*}:oc-$words[1]:
+            __oc_subcommand
+            ;;
+    esac
+}
+
+_oc "$@"
+
+# Local Variables:
+# mode: sh
+# End:
+# vim: ft=zsh
