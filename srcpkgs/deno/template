@@ -1,0 +1,45 @@
+# Template file for 'deno'
+pkgname=deno
+version=1.4.6
+revision=1
+_third_party_submodule_ref=e80050929aec91d594d68fc01f3919de70a1dc3d
+build_helper="rust"
+hostmakedepends="cargo pkg-config curl unzip git python ninja clang nodejs
+ gobject-introspection"
+depends="libglib-devel"
+short_desc="Simple, modern and secure runtime for JavaScript and TypeScript"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://deno.land"
+distfiles="https://github.com/denoland/deno/archive/v${version}.tar.gz
+ https://github.com/denoland/deno_third_party/archive/${_third_party_submodule_ref}.tar.gz"
+checksum="802bd22bcb00c1f2331f054b83820dfcdd7f79cc135bcd062d057f35fec9cba4
+ 5d6cbe9a40c8ad15976ef59bf423f5f3c2e0dab5ab401630bcb9d096ab20ef27"
+
+# Travis note: the 'aarch64-unknown-linux-gnu' target may not be installed
+# Arm/AArch builds are still WIP
+# See: https://github.com/denoland/deno/issues/4862
+case "$XBPS_TARGET_MACHINE" in
+	armv*|aarch*) broken="ERROR: Arm/AArch builds are still WIP\\nhttps://github.com/denoland/deno/issues/4862"
+esac
+
+
+pre_build() {
+	mv ../deno_third_party-${_third_party_submodule_ref}/* ./third_party/
+
+	git clone https://gn.googlesource.com/gn
+	cd gn
+	python build/gen.py
+	ninja -C out
+	PATH="$(pwd)/out:$PATH"
+	export PATH
+}
+
+do_build() {
+	V8_FROM_SOURCE=1 cargo build --release --locked --target ${RUST_TARGET} -vv
+}
+
+do_install() {
+	vbin target/${RUST_TARGET}/release/deno
+	vlicense LICENSE
+}
