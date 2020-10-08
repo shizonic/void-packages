@@ -1,0 +1,32 @@
+# Template file for 'gn'
+pkgname=gn
+version=0.0.20201022
+revision=1
+_githash=6f13aaac
+create_wrksrc=yes
+hostmakedepends="python3 ninja"
+short_desc="Meta-build system that generates build files for Ninja"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="BSD-3-Clause"
+homepage="https://gn.googlesource.com/gn/"
+distfiles="https://gn.googlesource.com/gn/+archive/${_githash}.tar.gz"
+checksum=@80d9da7d58252fa49089386c943d8e3c493a4e314309dbf5e7b7585bfb484fa8
+
+post_extract() {
+	printf '#define LAST_COMMIT_POSITION "%s"\n' "$version" >src/gn/last_commit_position.h
+	printf '#define LAST_COMMIT_POSITION_NUM 0\n' >>src/gn/last_commit_position.h
+}
+
+do_build() {
+	./build/gen.py --no-last-commit-position
+	ninja -C out
+}
+
+do_check() {
+	./out/gn_unittests
+}
+
+do_install() {
+	vbin out/gn
+	vlicense LICENSE
+}

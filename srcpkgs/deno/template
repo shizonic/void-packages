@@ -1,0 +1,38 @@
+# Template file for 'deno'
+pkgname=deno
+version=1.4.6
+revision=1
+build_helper="rust"
+hostmakedepends="cargo pkg-config curl unzip python ninja gn clang nodejs
+ lld llvm gobject-introspection"
+depends="libglib-devel"
+short_desc="Simple, modern and secure runtime for JavaScript and TypeScript"
+maintainer="shizonic <realtiaz@gmail.com>"
+license="MIT"
+homepage="https://deno.land"
+distfiles="https://github.com/denoland/deno/archive/v${version}.tar.gz
+ https://void.johnnynator.dev/distfiles/rusty_v8-0.11.0.tar.gz"
+checksum="802bd22bcb00c1f2331f054b83820dfcdd7f79cc135bcd062d057f35fec9cba4
+ c4045d5a3e7f95f6faa323639a3289f7c543385c10a9015f73dfe97fc7d6ca7c"
+
+post_extract() {
+	mv ../rusty_v8-0.11.0 rusty-void
+	cat >>Cargo.toml <<-'_EOF'
+
+	[patch.crates-io]
+	rusty_v8 = { path = 'rusty-void' }
+	_EOF
+}
+
+do_build() {
+	CLANG_BASE_PATH=/usr \
+	NINJA=/usr/bin/ninja \
+	GN=/usr/bin/gn \
+	V8_FROM_SOURCE=1 \
+	cargo build --release --locked --target ${RUST_TARGET} -vv
+}
+
+do_install() {
+	vbin target/${RUST_TARGET}/release/deno
+	vlicense LICENSE
+}

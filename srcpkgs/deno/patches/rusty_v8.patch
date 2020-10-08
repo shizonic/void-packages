@@ -1,0 +1,11 @@
+--- Cargo.lock	2020-10-10 12:30:55.000000000 +0200
++++ -	2020-10-22 17:12:50.248150438 +0200
+@@ -1920,8 +1920,6 @@
+ [[package]]
+ name = "rusty_v8"
+ version = "0.11.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "8c11463988ec37b3f8cb84e4c2fe8f63058c46e07348b6d1d27b114a2b981304"
+ dependencies = [
+  "bitflags",
+  "cargo_gn",
